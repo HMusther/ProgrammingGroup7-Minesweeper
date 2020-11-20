@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,49 +12,83 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
-        Tile[] tiles;
+        private Dictionary<Button, Tile> tiles = new Dictionary<Button, Tile>();
 
         public Form1()
         {
             InitializeComponent();
+
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: resize the form properly after the buttons have been added.
+
             var previousPosition = new Point(0, 0);
-            var buttonSize = new Size(25, 25);
+            var buttonSize = new Size(40, 40);
 
-            int rows = 12;
-            int columns = 13;
+            int rows = 10;
+            int columns = 10;
 
-            for (int i = 0; i <= columns; i++)
+            for (int i = 0; i < columns; i++)
             {
-                for (int j = 0; j <= rows; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     var button = new Button
                     {
-                        Name = $"Button{i}",
-                        Text = "",
+                        Name = $"Tile{i}",
+                        Text = $"{i.ToString()} {j.ToString()}",
                         Location = previousPosition,
                         Size = buttonSize
                     };
 
-                    var tile = new Tile(previousPosition, false, button);
+                    button.MouseClick += Button_MouseClick;
+
+                    // TODO: generate until we reach a cap.
+                    bool isMine = (new Random().Next(0, 2) == 1);
+
+                    var tile = new Tile(previousPosition, isMine, button);
+                    tiles.Add(button, tile);
 
                     // Move the next button by the size of the buttons.
                     previousPosition.X += buttonSize.Width;
 
+                    // If the next button.X position goes out of bounds then make a new line.
                     if (previousPosition.X > ClientSize.Width + buttonSize.Width)
                     {
                         // New line.
                         previousPosition.Y += buttonSize.Height;
-                        // Start from the beginning.
+
+                        // Start from the beginning of the new line.
                         previousPosition.X = 0;
                     }
 
                     Controls.Add(button);
                 }
             }
+        }
+
+        private void Button_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Button button = (Button)sender;
+
+                foreach (KeyValuePair<Button, Tile> btn in tiles)
+                {
+                    if (btn.Key.Equals(button))
+                    {
+                        Tile tile = btn.Value;
+
+                        // DEBUG, REMOVE.
+                        if (tile.isMine)
+                            button.Text = "MINE";
+                        else
+                            button.Text = "NOT MINE";
+                    }
+                }
+            }  
         }
     }
 }
