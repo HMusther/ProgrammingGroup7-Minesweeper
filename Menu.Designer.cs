@@ -137,7 +137,6 @@
             this.Controls.Add(this.radioButtonEasy);
             this.Name = "Menu";
             this.Text = "Menu";
-            this.Load += new System.EventHandler(this.Menu_Load);
             this.groupBoxGameInfo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
