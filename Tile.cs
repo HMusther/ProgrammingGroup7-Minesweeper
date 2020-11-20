@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -17,8 +17,8 @@ namespace Minesweeper
             this.button = button;
         }
 
-        Button button;
-        Point position;
-        bool isMine;
+        public readonly Button button;
+        public readonly Point position;
+        public readonly bool isMine;
     }
 }
