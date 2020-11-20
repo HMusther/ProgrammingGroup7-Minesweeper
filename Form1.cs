@@ -18,6 +18,7 @@ namespace Minesweeper
         {
             InitializeComponent();
 
+            // Position the Form in the center of the screen.
             StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -71,14 +72,19 @@ namespace Minesweeper
 
         private void Button_MouseClick(object sender, MouseEventArgs e)
         {
+            // If we clicked mouse1.
             if (e.Button == MouseButtons.Left)
             {
+                // Get the button object.
                 Button button = (Button)sender;
 
+                // Find the KeyValuePair that corresponds to our button in tiles.
                 foreach (KeyValuePair<Button, Tile> btn in tiles)
                 {
+                    // If the KeyValuePair we're checking against has our button, then we found it.
                     if (btn.Key.Equals(button))
                     {
+                        // Get the tile object that corresponds to our Button.
                         Tile tile = btn.Value;
 
                         // DEBUG, REMOVE.
