@@ -12,25 +12,29 @@ namespace Minesweeper
 {
     public partial class Menu : Form
     {
+        // Attributes
+        GameOptions gameOptions = new GameOptions();
+
+        // Functions
         public Menu()
         {
             InitializeComponent();
         }
-        private void buttonPlay_Click(object sender, EventArgs e)
+
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            if (radioButtonEasy.Checked)
+            if (radioEasy.Checked)
             {
-
+                gameOptions.setDifficulty(1);
             }
-            else if (radioButtonMedium.Checked)
+            else if (radioMedium.Checked)
             {
-
+                gameOptions.setDifficulty(2);
             }
-            else if (radioButtonHard.Checked)
+            else if (radioHard.Checked)
             {
-
+                gameOptions.setDifficulty(3);
             }
-            
         }
     }
 }

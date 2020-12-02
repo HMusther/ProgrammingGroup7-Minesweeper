@@ -1,4 +1,5 @@
-﻿namespace Minesweeper
+﻿
+namespace Minesweeper
 {
     partial class Menu
     {
@@ -29,129 +30,130 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.radioButtonEasy = new System.Windows.Forms.RadioButton();
-            this.radioButtonMedium = new System.Windows.Forms.RadioButton();
-            this.radioButtonHard = new System.Windows.Forms.RadioButton();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelDiff = new System.Windows.Forms.Label();
-            this.groupBoxGameInfo = new System.Windows.Forms.GroupBox();
-            this.labelTutorial = new System.Windows.Forms.Label();
-            this.buttonPlay = new System.Windows.Forms.Button();
-            this.groupBoxGameInfo.SuspendLayout();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.radioEasy = new System.Windows.Forms.RadioButton();
+            this.radioMedium = new System.Windows.Forms.RadioButton();
+            this.radioHard = new System.Windows.Forms.RadioButton();
+            this.groupBoxDifficulty = new System.Windows.Forms.GroupBox();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.groupBoxInformation = new System.Windows.Forms.GroupBox();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.groupBoxDifficulty.SuspendLayout();
+            this.groupBoxInformation.SuspendLayout();
             this.SuspendLayout();
             // 
-            // radioButtonEasy
+            // lblTitle
             // 
-            this.radioButtonEasy.AutoSize = true;
-            this.radioButtonEasy.Checked = true;
-            this.radioButtonEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonEasy.Location = new System.Drawing.Point(17, 96);
-            this.radioButtonEasy.Name = "radioButtonEasy";
-            this.radioButtonEasy.Size = new System.Drawing.Size(64, 21);
-            this.radioButtonEasy.TabIndex = 1;
-            this.radioButtonEasy.TabStop = true;
-            this.radioButtonEasy.Text = "Easy";
-            this.radioButtonEasy.UseVisualStyleBackColor = true;
+            this.lblTitle.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(12, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(342, 23);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Minesweeper";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // radioButtonMedium
+            // radioEasy
             // 
-            this.radioButtonMedium.AutoSize = true;
-            this.radioButtonMedium.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonMedium.Location = new System.Drawing.Point(17, 123);
-            this.radioButtonMedium.Name = "radioButtonMedium";
-            this.radioButtonMedium.Size = new System.Drawing.Size(84, 21);
-            this.radioButtonMedium.TabIndex = 2;
-            this.radioButtonMedium.Text = "Medium";
-            this.radioButtonMedium.UseVisualStyleBackColor = true;
+            this.radioEasy.AutoSize = true;
+            this.radioEasy.Checked = true;
+            this.radioEasy.Location = new System.Drawing.Point(6, 21);
+            this.radioEasy.Name = "radioEasy";
+            this.radioEasy.Size = new System.Drawing.Size(60, 21);
+            this.radioEasy.TabIndex = 1;
+            this.radioEasy.TabStop = true;
+            this.radioEasy.Text = "Easy";
+            this.radioEasy.UseVisualStyleBackColor = true;
             // 
-            // radioButtonHard
+            // radioMedium
             // 
-            this.radioButtonHard.AutoSize = true;
-            this.radioButtonHard.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonHard.Location = new System.Drawing.Point(17, 150);
-            this.radioButtonHard.Name = "radioButtonHard";
-            this.radioButtonHard.Size = new System.Drawing.Size(64, 21);
-            this.radioButtonHard.TabIndex = 3;
-            this.radioButtonHard.Text = "Hard";
-            this.radioButtonHard.UseVisualStyleBackColor = true;
+            this.radioMedium.AutoSize = true;
+            this.radioMedium.Location = new System.Drawing.Point(6, 46);
+            this.radioMedium.Name = "radioMedium";
+            this.radioMedium.Size = new System.Drawing.Size(78, 21);
+            this.radioMedium.TabIndex = 2;
+            this.radioMedium.Text = "Medium";
+            this.radioMedium.UseVisualStyleBackColor = true;
             // 
-            // labelTitle
+            // radioHard
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Broadway", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(107, 9);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(193, 27);
-            this.labelTitle.TabIndex = 4;
-            this.labelTitle.Text = "Minesweeper";
+            this.radioHard.AutoSize = true;
+            this.radioHard.Location = new System.Drawing.Point(6, 73);
+            this.radioHard.Name = "radioHard";
+            this.radioHard.Size = new System.Drawing.Size(60, 21);
+            this.radioHard.TabIndex = 3;
+            this.radioHard.Text = "Hard";
+            this.radioHard.UseVisualStyleBackColor = true;
             // 
-            // labelDiff
+            // groupBoxDifficulty
             // 
-            this.labelDiff.AutoSize = true;
-            this.labelDiff.Font = new System.Drawing.Font("Broadway", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDiff.Location = new System.Drawing.Point(14, 77);
-            this.labelDiff.Name = "labelDiff";
-            this.labelDiff.Size = new System.Drawing.Size(180, 16);
-            this.labelDiff.TabIndex = 5;
-            this.labelDiff.Text = "Difficulty (Grid Size)";
+            this.groupBoxDifficulty.Controls.Add(this.radioMedium);
+            this.groupBoxDifficulty.Controls.Add(this.radioHard);
+            this.groupBoxDifficulty.Controls.Add(this.radioEasy);
+            this.groupBoxDifficulty.Location = new System.Drawing.Point(12, 54);
+            this.groupBoxDifficulty.Name = "groupBoxDifficulty";
+            this.groupBoxDifficulty.Size = new System.Drawing.Size(200, 100);
+            this.groupBoxDifficulty.TabIndex = 4;
+            this.groupBoxDifficulty.TabStop = false;
+            this.groupBoxDifficulty.Text = "Difficulty Selector";
             // 
-            // groupBoxGameInfo
+            // btnStart
             // 
-            this.groupBoxGameInfo.Controls.Add(this.labelTutorial);
-            this.groupBoxGameInfo.Location = new System.Drawing.Point(17, 177);
-            this.groupBoxGameInfo.Name = "groupBoxGameInfo";
-            this.groupBoxGameInfo.Size = new System.Drawing.Size(352, 153);
-            this.groupBoxGameInfo.TabIndex = 6;
-            this.groupBoxGameInfo.TabStop = false;
-            this.groupBoxGameInfo.Text = "Game Info";
+            this.btnStart.Location = new System.Drawing.Point(258, 68);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(80, 80);
+            this.btnStart.TabIndex = 5;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // labelTutorial
+            // groupBoxInformation
             // 
-            this.labelTutorial.Location = new System.Drawing.Point(7, 22);
-            this.labelTutorial.Name = "labelTutorial";
-            this.labelTutorial.Size = new System.Drawing.Size(339, 128);
-            this.labelTutorial.TabIndex = 0;
-            this.labelTutorial.Text = resources.GetString("labelTutorial.Text");
+            this.groupBoxInformation.Controls.Add(this.labelDescription);
+            this.groupBoxInformation.Enabled = false;
+            this.groupBoxInformation.Location = new System.Drawing.Point(12, 171);
+            this.groupBoxInformation.Name = "groupBoxInformation";
+            this.groupBoxInformation.Size = new System.Drawing.Size(342, 92);
+            this.groupBoxInformation.TabIndex = 6;
+            this.groupBoxInformation.TabStop = false;
+            this.groupBoxInformation.Text = "Information";
+            this.groupBoxInformation.UseWaitCursor = true;
             // 
-            // buttonPlay
+            // labelDescription
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(233, 118);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(78, 31);
-            this.buttonPlay.TabIndex = 7;
-            this.buttonPlay.Text = "Play";
-            this.buttonPlay.UseVisualStyleBackColor = true;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            this.labelDescription.Location = new System.Drawing.Point(7, 22);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(329, 55);
+            this.labelDescription.TabIndex = 0;
+            this.labelDescription.Text = "Game created by Ben Smith, Harry Musther, Ahmed Saaed and Kieran Foy.";
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 342);
-            this.Controls.Add(this.buttonPlay);
-            this.Controls.Add(this.groupBoxGameInfo);
-            this.Controls.Add(this.labelDiff);
-            this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.radioButtonHard);
-            this.Controls.Add(this.radioButtonMedium);
-            this.Controls.Add(this.radioButtonEasy);
+            this.ClientSize = new System.Drawing.Size(366, 285);
+            this.Controls.Add(this.groupBoxInformation);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.groupBoxDifficulty);
+            this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Menu";
             this.Text = "Menu";
-            this.groupBoxGameInfo.ResumeLayout(false);
+            this.groupBoxDifficulty.ResumeLayout(false);
+            this.groupBoxDifficulty.PerformLayout();
+            this.groupBoxInformation.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButtonEasy;
-        private System.Windows.Forms.RadioButton radioButtonMedium;
-        private System.Windows.Forms.RadioButton radioButtonHard;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Label labelDiff;
-        private System.Windows.Forms.GroupBox groupBoxGameInfo;
-        private System.Windows.Forms.Label labelTutorial;
-        private System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.RadioButton radioEasy;
+        private System.Windows.Forms.RadioButton radioMedium;
+        private System.Windows.Forms.RadioButton radioHard;
+        private System.Windows.Forms.GroupBox groupBoxDifficulty;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.GroupBox groupBoxInformation;
+        private System.Windows.Forms.Label labelDescription;
     }
 }
