@@ -15,6 +15,8 @@ namespace Minesweeper
         private int rows;
         private int bombCount;
 
+        // To Do: Write difficulty to a file and remember for next time
+
         // Constructor defaults to easy mode
         public GameOptions()
         {
@@ -49,6 +51,7 @@ namespace Minesweeper
                     rows = 20;
                     bombCount = 50;
                     break;
+                // Unrecognised difficulty
                 default:
                     break;
             }

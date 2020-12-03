@@ -23,19 +23,12 @@ namespace Minesweeper
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (radioEasy.Checked)
-            {
-                gameOptions.setDifficulty(1);
-            }
-            else if (radioMedium.Checked)
-            {
-                gameOptions.setDifficulty(2);
-            }
-            else if (radioHard.Checked)
-            {
-                gameOptions.setDifficulty(3);
-            }
+            // Checking for medium and hard, else remains as easy which is default created from constructor
+            // This also bypasses any invalid input by always defaulting to easy if it doesn't recognise the two other inputs
+            if (radioMedium.Checked) gameOptions.setDifficulty(2);
+            else if (radioHard.Checked) gameOptions.setDifficulty(3);
 
+            // To Do: Pass in the gameOptions object and use it in the main game application
             new Form1().ShowDialog();
         }
     }
