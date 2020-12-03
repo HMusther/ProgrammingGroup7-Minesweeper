@@ -35,6 +35,8 @@ namespace Minesweeper
             {
                 gameOptions.setDifficulty(3);
             }
+
+            new Form1().ShowDialog();
         }
     }
 }
