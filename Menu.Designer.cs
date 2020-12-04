@@ -125,6 +125,7 @@ namespace Minesweeper
             this.labelDescription.Size = new System.Drawing.Size(329, 55);
             this.labelDescription.TabIndex = 0;
             this.labelDescription.Text = "Game created by Ben Smith, Harry Musther, Ahmed Saaed and Kieran Foy.";
+            this.labelDescription.UseWaitCursor = true;
             // 
             // Menu
             // 
@@ -139,6 +140,7 @@ namespace Minesweeper
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.Menu_Load);
             this.groupBoxDifficulty.ResumeLayout(false);
             this.groupBoxDifficulty.PerformLayout();
             this.groupBoxInformation.ResumeLayout(false);

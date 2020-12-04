@@ -75,7 +75,7 @@ namespace Minesweeper
         private static void SaveDifficulty()
         {
             string path = "difficulty.txt";
-            string content = _Difficulty + "," + Columns + "," + Rows + "," + BombCount;
+            string content = "" + _Difficulty;
             File.WriteAllText(path, content);
         }
     }
