@@ -3,77 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Minesweeper
 {
     class GameOptions
     {
-        // Attributes
-        // 1 = easy, 2 = medium, 3 = hard
-        private int difficulty;
-        private int columns;
-        private int rows;
-        private int bombCount;
+        // Static class because we will never need more than once instance of it.
 
-        // To Do: Write difficulty to a file and remember for next time
+        // TODO: Write difficulty to a file and remember for next time
 
-        // Constructor defaults to easy mode
-        public GameOptions()
+        public enum Difficulty
         {
-            difficulty = 1;
-            columns = 10;
-            rows = 10;
-            bombCount = 10;
+            EASY = 1,
+            MEDIUM,
+            HARD
         }
-        // Functions
-        public void setDifficulty(int difficulty)
+
+        /*
+         * Properties are always written in PascalCase.
+         * Any class can get the value from the variable, but
+         * the value can only be set in this class.
+         */
+        public static Difficulty _Difficulty { get; private set; }
+        public static int Columns { get; private set; }
+        public static int Rows { get; private set; }
+        public static int BombCount { get; private set; }
+
+
+        /// <summary>
+        /// Set the difficulty of the next game, and write it to a file.
+        /// </summary>
+        /// <param name="difficulty">Your desired difficulty.</param>
+        public static void SetDifficulty(Difficulty difficulty)
         {
             switch (difficulty)
             {
-                // Easy
-                case 1:
-                    this.difficulty = difficulty;
-                    columns = 10;
-                    rows = 10;
-                    bombCount = 10;
+                case Difficulty.EASY:
+                    _Difficulty = difficulty;
+                    Columns = 10;
+                    Rows = 10;
+                    BombCount = 10;
                     break;
-                // Medium
-                case 2:
-                    this.difficulty = difficulty;
-                    columns = 15;
-                    rows = 15;
-                    bombCount = 30;
+                case Difficulty.MEDIUM:
+                    _Difficulty = difficulty;
+                    Columns = 15;
+                    Rows = 15;
+                    BombCount = 30;
                     break;
-                // Hard
-                case 3:
-                    this.difficulty = difficulty;
-                    columns = 20;
-                    rows = 20;
-                    bombCount = 50;
+                case Difficulty.HARD:
+                    _Difficulty = difficulty;
+                    Columns = 20;
+                    Rows = 20;
+                    BombCount = 50;
                     break;
-                // Unrecognised difficulty
+                // Unrecognised difficulty, default to easy mode.
                 default:
+                    _Difficulty = Difficulty.EASY;
+                    Columns = 10;
+                    Rows = 10;
+                    BombCount = 10;
                     break;
             }
-        }
-        public int getDifficulty()
-        {
-            return difficulty;
+
+            SaveDifficulty();
         }
 
-        public int getColumns()
+        /// <summary>
+        /// Write the current difficulty to a file.
+        /// </summary>
+        private static void SaveDifficulty()
         {
-            return columns;
-        }
-
-        public int getRows()
-        {
-            return rows;
-        }
-
-        public int getBombCount()
-        {
-            return bombCount;
+            string path = "difficulty.txt";
+            string content = _Difficulty + "," + Columns + "," + Rows + "," + BombCount;
+            File.WriteAllText(path, content);
         }
     }
 }
