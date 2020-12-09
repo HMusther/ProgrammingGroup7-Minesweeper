@@ -1,4 +1,4 @@
-﻿namespace Minesweeper
+namespace Minesweeper
 {
     partial class Form1
     {
@@ -28,24 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.LabelTimer = new System.Windows.Forms.Label();
+            this.LabelFlags = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // LabelTimer
+            // 
+            this.LabelTimer.AutoSize = true;
+            this.LabelTimer.Location = new System.Drawing.Point(5, 0);
+            this.LabelTimer.Name = "LabelTimer";
+            this.LabelTimer.Size = new System.Drawing.Size(60, 13);
+            this.LabelTimer.TabIndex = 0;
+            this.LabelTimer.Text = "Timer: 0:00";
+            // 
+            // LabelFlags
+            // 
+            this.LabelFlags.AutoSize = true;
+            this.LabelFlags.Location = new System.Drawing.Point(71, 0);
+            this.LabelFlags.Name = "LabelFlags";
+            this.LabelFlags.Size = new System.Drawing.Size(44, 13);
+            this.LabelFlags.TabIndex = 1;
+            this.LabelFlags.Text = "Flags: 0";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 431);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(334, 327);
+            this.Controls.Add(this.LabelFlags);
+            this.Controls.Add(this.LabelTimer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Minesweeper";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label LabelTimer;
+        private System.Windows.Forms.Label LabelFlags;
     }
 }
 
