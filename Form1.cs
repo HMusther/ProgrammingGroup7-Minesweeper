@@ -177,6 +177,9 @@ namespace Minesweeper
                     // Get the tile object that corresponds to our Button.
                     tile = btn.Value;
                 }
+
+                // Add the button to the form.
+                Controls.Add(button);
             }
 
             // If we clicked mouse1.
@@ -186,6 +189,7 @@ namespace Minesweeper
                 {
                     button.Image = null;
                     button.BackColor = Color.Red;
+
 
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);

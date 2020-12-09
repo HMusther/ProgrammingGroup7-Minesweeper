@@ -1,8 +1,10 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Minesweeper
 {
@@ -73,7 +75,9 @@ namespace Minesweeper
         /// </summary>
         private static void SaveDifficulty()
         {
-
+            string path = "difficulty.txt";
+            string content = "" + _Difficulty;
+            File.WriteAllText(path, content);
         }
     }
 }
