@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Minesweeper
 {
-    class GameOptions
+    public class GameOptions
     {
         // Static class because we will never need more than once instance of it.
 
@@ -29,8 +29,8 @@ namespace Minesweeper
         public static Difficulty _Difficulty { get; private set; }
         public static int Columns { get; private set; }
         public static int Rows { get; private set; }
-        public static int BombCount { get; private set; }
-
+        public static int BombCount { get; set; }
+        public static int BombLimit { get; set; }
 
         /// <summary>
         /// Set the difficulty of the next game, and write it to a file.
@@ -44,26 +44,26 @@ namespace Minesweeper
                     _Difficulty = difficulty;
                     Columns = 10;
                     Rows = 10;
-                    BombCount = 10;
+                    BombLimit = 40;
                     break;
                 case Difficulty.MEDIUM:
                     _Difficulty = difficulty;
                     Columns = 15;
                     Rows = 15;
-                    BombCount = 30;
+                    BombLimit = 30;
                     break;
                 case Difficulty.HARD:
                     _Difficulty = difficulty;
                     Columns = 20;
                     Rows = 20;
-                    BombCount = 50;
+                    BombLimit = 50;
                     break;
                 // Unrecognised difficulty, default to easy mode.
                 default:
                     _Difficulty = Difficulty.EASY;
                     Columns = 10;
                     Rows = 10;
-                    BombCount = 10;
+                    BombLimit = 40;
                     break;
             }
 
