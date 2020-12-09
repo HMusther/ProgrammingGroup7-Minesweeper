@@ -11,7 +11,6 @@ namespace Minesweeper
     public partial class Form1 : Form
     {
         private Dictionary<Button, Tile> tiles = new Dictionary<Button, Tile>();
-
         /// <summary>
         /// The size of our tiles on the Form.
         /// </summary>
@@ -90,8 +89,8 @@ namespace Minesweeper
             var previousPosition = new Point(0, 15);
 
             // The amount of tiles we want.
-            int buttons = 100;
-
+            //int buttons = 100;
+            int buttons = GameOptions.Columns * GameOptions.Rows;
             var customFont = new Font("Sans Serif", 16f);
 
             for (int i = 0; i < buttons; i++)

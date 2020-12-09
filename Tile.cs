@@ -14,15 +14,22 @@ namespace Minesweeper
         {
             this.button = button;
 
+            // If the bomb count is lower than or equal to the bomb limit, 
+            // carry on creating bombs until limit reached.
+            if(GameOptions.BombCount <= GameOptions.BombLimit)
+            {
             /*
-             * If the randomly generated number = 1 then return true,
-             * otherwise return false.
-             * 
-             * 30% chance to be true.
-             * 
-             * (int)DateTime.Now.Ticks guarantees that we have a random seed.
-             */
-            isMine = new Random((int)DateTime.Now.Ticks).Next(0, 3) == 1;
+                * If the randomly generated number = 1 then return true,
+                * otherwise return false.
+                * 
+                * 30% chance to be true.
+                * 
+                * (int)DateTime.Now.Ticks guarantees that we have a random seed.
+            */
+                isMine = new Random((int)DateTime.Now.Ticks).Next(0, 3) == 1;
+                // When mine has been successfully created, increment the amount of bombs in grid
+                if (isMine) GameOptions.BombCount++;
+            }
         }
 
         public void Click()
