@@ -13,7 +13,6 @@ namespace Minesweeper
         public Tile(Button button)
         {
             this.button = button;
-
             /*
              * If the randomly generated number = 1 then return true,
              * otherwise return false.

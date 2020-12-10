@@ -15,7 +15,7 @@ namespace Minesweeper
     {
         // Attributes
         GameOptions gameOptions = new GameOptions();
-
+        private string playerName { set; get; }
         // Functions
         public Menu()
         {
@@ -24,6 +24,7 @@ namespace Minesweeper
 
         private void Menu_Load(object sender, EventArgs e)
         {
+            
             string path = "difficulty.txt";
             if (File.Exists(path))
             {
@@ -53,6 +54,16 @@ namespace Minesweeper
 
             // To Do: Pass in the gameOptions object and use it in the main game application
             new Form1().ShowDialog();
+        }
+
+        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShowLeaderboard_Click(object sender, EventArgs e)
+        {
+            new Leaderboard().ShowDialog();
         }
     }
 }

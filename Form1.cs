@@ -10,6 +10,7 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
+   
         private Dictionary<Button, Tile> tiles = new Dictionary<Button, Tile>();
 
         /// <summary>
@@ -40,6 +41,8 @@ namespace Minesweeper
         private int flags;
 
         private int flagCap = 50;
+
+        
 
         public Form1()
         {
