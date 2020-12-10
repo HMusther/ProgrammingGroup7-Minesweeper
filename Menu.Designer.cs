@@ -139,7 +139,7 @@ namespace Minesweeper
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu";
+            this.Text = "Minesweeper";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.groupBoxDifficulty.ResumeLayout(false);
             this.groupBoxDifficulty.PerformLayout();

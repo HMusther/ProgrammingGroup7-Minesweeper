@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Minesweeper
 {
@@ -79,8 +80,8 @@ namespace Minesweeper
 
         private void SetupTiles()
         {
-            // TODO: scale the amount of tiles and mines up depending on difficulty.
-            // TODO: make a cap for mines depending on difficulty.
+            // TODO: scale the amount of tiles and mines up depending on difficulty. (DONE, needs testing)
+            // TODO: make a cap for mines depending on difficulty. (DONE, needs testing)
 
             /*
              * Used for calculating the next position the button will be positioned.
@@ -184,12 +185,15 @@ namespace Minesweeper
             // If we clicked mouse1.
             if (e.Button == MouseButtons.Left)
             {
+                // Game loss mechanics
                 if (tile.isMine)
                 {
                     button.Image = null;
                     button.BackColor = Color.Red;
-
-
+                    SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+                    // Play sound bombs detonated
+                    bombDetonate.Play();
+                    // Label Instead of messagebox to stop the system sounds?
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
