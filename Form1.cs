@@ -181,6 +181,144 @@ namespace Minesweeper
                 // Add the button to the form.
                 Controls.Add(button);
             }
+            List<Button> buttons = tiles.Keys.ToList();
+            /*
+                If a condition is true below and a surrounding tile is a mine,
+                this list gets added to, when all tiles surrounding have been 
+                calculated the list is counted for the surrounding bombs and 
+                this will determine the number on the tile.
+            */
+            List<Tile> MinesAround = new List<Tile>();
+
+            // Get the button object.
+            //Button button = (Button)sender;
+            //Tile tile = tiles[button];
+            int index = buttons.IndexOf(button);
+
+            // IMPORTANT mine surrounding logic
+            // Here is logic for button anomalies below, these are positions that
+            // must be treated differently becasuse they are on the edges of the grid
+            // IMPORTANT difficulty scaling logic
+            // In order for it to be compatible with different grid sizes, 
+            // values will be multiplied by the neccessary value to reach the new grid size
+            // eg: Easy is a 10 x 10 grid so 100, in medium it is 15 x 15 so 225 therefore all values must be times by 2.25 and rounded
+            // Corners
+            var Corners = new List<Button>();
+            Button TopLeftCorner = buttons[0];
+            Button TopRightCorner = buttons[10];
+            Button BottomLeftCorner = buttons[90];
+            Button BottomRightCorner = buttons[100];
+            Corners.Add(TopLeftCorner);
+            Corners.Add(TopRightCorner);
+            Corners.Add(BottomLeftCorner);
+            Corners.Add(BottomRightCorner);
+
+            // Top row
+            var TopRow = new List<Button>();
+            Button TopRowOne = buttons[1];
+            Button TopRowTwo = buttons[2];
+            Button TopRowThree = buttons[3];
+            Button TopRowFour = buttons[4];
+            Button TopRowFive = buttons[5];
+            Button TopRowSix = buttons[6];
+            Button TopRowSeven = buttons[7];
+            Button TopRowEight = buttons[8];
+            Button TopRowNine = buttons[9];
+            TopRow.Add(TopRowOne);
+            TopRow.Add(TopRowTwo);
+            TopRow.Add(TopRowThree);
+            TopRow.Add(TopRowFour);
+            TopRow.Add(TopRowFive);
+            TopRow.Add(TopRowSix);
+            TopRow.Add(TopRowSeven);
+            TopRow.Add(TopRowEight);
+            TopRow.Add(TopRowNine);
+            // Bottom row
+            var BottomRow = new List<Button>();
+            Button BottomRowOne = buttons[91];
+            Button BottomRowTwo = buttons[92];
+            Button BottomRowThree = buttons[93];
+            Button BottomRowFour = buttons[94];
+            Button BottomRowFive = buttons[95];
+            Button BottomRowSix = buttons[96];
+            Button BottomRowSeven = buttons[97];
+            Button BottomRowEight = buttons[98];
+            Button BottomRowNine = buttons[99];
+            BottomRow.Add(BottomRowOne);
+            BottomRow.Add(BottomRowTwo);
+            BottomRow.Add(BottomRowThree);
+            BottomRow.Add(BottomRowFour);
+            BottomRow.Add(BottomRowFive);
+            BottomRow.Add(BottomRowSix);
+            BottomRow.Add(BottomRowSeven);
+            BottomRow.Add(BottomRowEight);
+            BottomRow.Add(BottomRowNine);
+            // Left column
+            var LeftColumn = new List<Button>();
+            Button LeftColOne = buttons[11];
+            Button LeftColTwo = buttons[21];
+            Button LeftColThree = buttons[31];
+            Button LeftColFour = buttons[41];
+            Button LeftColFive = buttons[51];
+            Button LeftColSix = buttons[61];
+            Button LeftColSeven = buttons[71];
+            Button LeftColEight = buttons[81];
+            LeftColumn.Add(LeftColOne);
+            LeftColumn.Add(LeftColTwo);
+            LeftColumn.Add(LeftColThree);
+            LeftColumn.Add(LeftColFour);
+            LeftColumn.Add(LeftColFive);
+            LeftColumn.Add(LeftColSix);
+            LeftColumn.Add(LeftColSix);
+            LeftColumn.Add(LeftColSeven);
+            LeftColumn.Add(LeftColEight);
+            // Right column
+            var RightColumn = new List<Button>();
+            Button RightColOne = buttons[20];
+            Button RightColTwo = buttons[30];
+            Button RightColThree = buttons[40];
+            Button RightColFour = buttons[50];
+            Button RightColFive = buttons[60];
+            Button RightColSix = buttons[70];
+            Button RightColSeven = buttons[80];
+            Button RightColEight = buttons[90];
+            RightColumn.Add(RightColOne);
+            RightColumn.Add(RightColTwo);
+            RightColumn.Add(RightColThree);
+            RightColumn.Add(RightColFour);
+            RightColumn.Add(RightColFive);
+            RightColumn.Add(RightColSix);
+            RightColumn.Add(RightColSeven);
+            RightColumn.Add(RightColEight);
+            // Tiles in relation to buttons
+            Button TopLeft = buttons[index - 11];
+            Button BottomLeft = buttons[index + 9];
+            Button left = buttons[index - 1];
+            Button above = buttons[index - 10];
+            Button below = buttons[index + 10];
+            Button right = buttons[index + 1];
+            Button TopRight = buttons[index - 9];
+            Button BottomRight = buttons[index + 11];
+
+            // Adjacent tiles
+            Tile leftTile = tiles[left];
+            Tile TopLeftTile = tiles[TopLeft];
+            Tile BottomLeftTile = tiles[BottomLeft];
+            Tile aboveTile = tiles[above];
+            Tile belowTile = tiles[below];
+            Tile TopRightTile = tiles[TopRight];
+            Tile rightTile = tiles[right];
+            Tile BottomRightTile = tiles[BottomRight];
+
+            // Checks for mines and then adding if one is found
+            if (leftTile.isMine == true) MinesAround.Add(leftTile);
+            if (TopLeftTile.isMine == true) MinesAround.Add(TopLeftTile);
+            if (BottomLeftTile.isMine == true) MinesAround.Add(BottomLeftTile);
+            if (aboveTile.isMine == true) MinesAround.Add(aboveTile);
+            if (belowTile.isMine == true) MinesAround.Add(belowTile);
+            if (TopRightTile.isMine == true) MinesAround.Add(TopRightTile);
+            if (rightTile.isMine == true) MinesAround.Add(rightTile);
+            if (BottomRightTile.isMine == true) MinesAround.Add(BottomRightTile);
 
             // If we clicked mouse1.
             if (e.Button == MouseButtons.Left)
