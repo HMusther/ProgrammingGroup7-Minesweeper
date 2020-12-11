@@ -38,6 +38,9 @@ namespace Minesweeper
             this.btnStart = new System.Windows.Forms.Button();
             this.groupBoxInformation = new System.Windows.Forms.GroupBox();
             this.labelDescription = new System.Windows.Forms.Label();
+            this.btnLeaderboard = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.usernameInput = new System.Windows.Forms.TextBox();
             this.groupBoxDifficulty.SuspendLayout();
             this.groupBoxInformation.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +92,7 @@ namespace Minesweeper
             this.groupBoxDifficulty.Controls.Add(this.radioMedium);
             this.groupBoxDifficulty.Controls.Add(this.radioHard);
             this.groupBoxDifficulty.Controls.Add(this.radioEasy);
-            this.groupBoxDifficulty.Location = new System.Drawing.Point(12, 54);
+            this.groupBoxDifficulty.Location = new System.Drawing.Point(16, 91);
             this.groupBoxDifficulty.Name = "groupBoxDifficulty";
             this.groupBoxDifficulty.Size = new System.Drawing.Size(200, 100);
             this.groupBoxDifficulty.TabIndex = 4;
@@ -98,7 +101,7 @@ namespace Minesweeper
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(258, 68);
+            this.btnStart.Location = new System.Drawing.Point(259, 107);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(80, 80);
             this.btnStart.TabIndex = 5;
@@ -110,7 +113,7 @@ namespace Minesweeper
             // 
             this.groupBoxInformation.Controls.Add(this.labelDescription);
             this.groupBoxInformation.Enabled = false;
-            this.groupBoxInformation.Location = new System.Drawing.Point(12, 171);
+            this.groupBoxInformation.Location = new System.Drawing.Point(12, 197);
             this.groupBoxInformation.Name = "groupBoxInformation";
             this.groupBoxInformation.Size = new System.Drawing.Size(342, 92);
             this.groupBoxInformation.TabIndex = 6;
@@ -127,11 +130,42 @@ namespace Minesweeper
             this.labelDescription.Text = "Game created by Ben Smith, Harry Musther, Ahmed Saaed and Kieran Foy.";
             this.labelDescription.UseWaitCursor = true;
             // 
+            // btnLeaderboard
+            // 
+            this.btnLeaderboard.Location = new System.Drawing.Point(240, 315);
+            this.btnLeaderboard.Name = "btnLeaderboard";
+            this.btnLeaderboard.Size = new System.Drawing.Size(113, 41);
+            this.btnLeaderboard.TabIndex = 7;
+            this.btnLeaderboard.Text = "Leaderboard";
+            this.btnLeaderboard.UseVisualStyleBackColor = true;
+            this.btnLeaderboard.Click += new System.EventHandler(this.btnLeaderboard_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(30, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Username";
+            // 
+            // usernameInput
+            // 
+            this.usernameInput.Location = new System.Drawing.Point(130, 54);
+            this.usernameInput.Name = "usernameInput";
+            this.usernameInput.Size = new System.Drawing.Size(147, 22);
+            this.usernameInput.TabIndex = 9;
+            this.usernameInput.Text = "Type your username";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 285);
+            this.ClientSize = new System.Drawing.Size(366, 383);
+            this.Controls.Add(this.usernameInput);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnLeaderboard);
             this.Controls.Add(this.groupBoxInformation);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupBoxDifficulty);
@@ -145,6 +179,7 @@ namespace Minesweeper
             this.groupBoxDifficulty.PerformLayout();
             this.groupBoxInformation.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -158,5 +193,8 @@ namespace Minesweeper
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.GroupBox groupBoxInformation;
         private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Button btnLeaderboard;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox usernameInput;
     }
 }

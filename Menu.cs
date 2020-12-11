@@ -54,5 +54,10 @@ namespace Minesweeper
             // To Do: Pass in the gameOptions object and use it in the main game application
             new Form1().ShowDialog();
         }
+
+        private void btnLeaderboard_Click(object sender, EventArgs e)
+        {
+            new Leaderboard().ShowDialog();
+        }
     }
 }
