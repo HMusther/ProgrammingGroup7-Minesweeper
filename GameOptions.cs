@@ -44,13 +44,13 @@ namespace Minesweeper
                     _Difficulty = difficulty;
                     Columns = 10;
                     Rows = 10;
-                    BombLimit = 40;
+                    BombLimit = 30;
                     break;
                 case Difficulty.MEDIUM:
                     _Difficulty = difficulty;
                     Columns = 15;
                     Rows = 15;
-                    BombLimit = 30;
+                    BombLimit = 40;
                     break;
                 case Difficulty.HARD:
                     _Difficulty = difficulty;
@@ -63,7 +63,7 @@ namespace Minesweeper
                     _Difficulty = Difficulty.EASY;
                     Columns = 10;
                     Rows = 10;
-                    BombLimit = 40;
+                    BombLimit = 30;
                     break;
             }
 
