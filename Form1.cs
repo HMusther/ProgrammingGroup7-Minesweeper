@@ -161,6 +161,162 @@ namespace Minesweeper
             LabelFlags.Text = $"Flags: {(flagCap - flags < 10 ? "0" : "")}{flagCap - flags}";
         }
 
+        public void BombCheckAndfloodfill(Button button)
+        {
+            List<Button> buttons = tiles.Keys.ToList();
+            /*
+                If a condition is true below and a surrounding tile is a mine,
+                this list gets added to, when all tiles surrounding have been 
+                calculated the list is counted for the surrounding bombs and 
+                this will determine the number on the tile.
+            */
+            Tile tile = default;
+            foreach (KeyValuePair<Button, Tile> btn in tiles)
+            {
+                // If the KeyValuePair we're checking against has our button, then we found it.
+                if (btn.Key.Equals(button))
+                {
+                    // Get the tile object that corresponds to our Button.
+                    tile = btn.Value;
+                }
+            }
+
+            List<Tile> MinesAround = new List<Tile>();
+
+            // Get the button object.
+            int index = buttons.IndexOf(button);
+
+            // IMPORTANT
+            // Here is logic for button anomalies below, these are positions that
+            // must be treated differently becasuse they are on the edges of the grid
+
+            // Tiles in relation to buttons
+            Button TopLeft = buttons[index - 11];
+            Button left = buttons[index - 1];
+            Button BottomLeft = buttons[index + 9];
+            Button above = buttons[index - 10];
+            Button below = buttons[index + 10];
+            Button right = buttons[index + 1];
+            Button TopRight = buttons[index - 9];
+            Button BottomRight = buttons[index + 11];
+
+            // Adjacent tiles
+            Tile TopLeftTile = tiles[TopLeft];
+            Tile leftTile = tiles[left];
+            Tile BottomLeftTile = tiles[BottomLeft];
+            Tile aboveTile = tiles[above];
+            Tile belowTile = tiles[below];
+            Tile rightTile = tiles[right];
+            Tile TopRightTile = tiles[TopRight];
+            Tile BottomRightTile = tiles[BottomRight];
+
+            //Checks Top Left Corner
+            if (button == buttons[0])
+            {
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+                if (BottomRightTile.isMine == true) { MinesAround.Add(BottomRightTile); }
+            }
+            //Checks Bottom Left Corner
+            else if (button == buttons[90])
+            {
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (TopRightTile.isMine == true) { MinesAround.Add(TopRightTile); }
+            }
+            //Checks Top Right Corner
+            else if (button == buttons[9])
+            {
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+                if (BottomLeftTile.isMine == true) { MinesAround.Add(BottomLeftTile); }
+            }
+            //Checks Bottom Right Corner
+            else if (button == buttons[99])
+            {
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (TopLeftTile.isMine == true) { MinesAround.Add(TopLeftTile); }
+            }
+            // Top row
+            else if (button == buttons[1] || button == buttons[2] || button == buttons[3] || button == buttons[4] ||
+                     button == buttons[5] || button == buttons[6] || button == buttons[7] || button == buttons[8])
+            {
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (BottomLeftTile.isMine == true) { MinesAround.Add(BottomLeftTile); }
+                if (BottomRightTile.isMine == true) { MinesAround.Add(BottomRightTile); }
+            }
+            // Bottom row
+            else if (button == buttons[91] || button == buttons[92] || button == buttons[93] || button == buttons[94] ||
+                     button == buttons[95] || button == buttons[96] || button == buttons[97] || button == buttons[98])
+            {
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (TopLeftTile.isMine == true) { MinesAround.Add(TopLeftTile); }
+                if (TopRightTile.isMine == true) { MinesAround.Add(TopRightTile); }
+            }
+            // Left column
+            else if (button == buttons[10] || button == buttons[20] || button == buttons[30] || button == buttons[40] ||
+                     button == buttons[50] || button == buttons[60] || button == buttons[70] || button == buttons[80])
+            {
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (TopRightTile.isMine == true) { MinesAround.Add(TopRightTile); }
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+            }
+            // Right column
+            else if (button == buttons[19] || button == buttons[29] || button == buttons[39] || button == buttons[49] ||
+                     button == buttons[59] || button == buttons[69] || button == buttons[79] || button == buttons[89])
+            {
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (BottomLeftTile.isMine == true) { MinesAround.Add(BottomLeftTile); }
+            }
+            else
+            {
+                if (leftTile.isMine == true) { MinesAround.Add(leftTile); }
+                if (TopLeftTile.isMine == true) { MinesAround.Add(TopLeftTile); }
+                if (BottomLeftTile.isMine == true) { MinesAround.Add(BottomLeftTile); }
+                if (aboveTile.isMine == true) { MinesAround.Add(aboveTile); }
+                if (belowTile.isMine == true) { MinesAround.Add(belowTile); }
+                if (TopRightTile.isMine == true) { MinesAround.Add(TopRightTile); }
+                if (rightTile.isMine == true) { MinesAround.Add(rightTile); }
+                if (BottomRightTile.isMine == true) { MinesAround.Add(BottomRightTile); }
+            }
+
+            while (true)
+            {
+                if
+                (
+                    leftTile.isMine == false && TopLeftTile.isMine == false &&
+                    BottomLeftTile.isMine == false && aboveTile.isMine == false &&
+                    belowTile.isMine == false && TopRightTile.isMine == false &&
+                    rightTile.isMine == false && BottomRightTile.isMine == false
+                )
+                {
+                    left.Visible = false;
+                    TopLeft.Visible = false;
+                    BottomLeft.Visible = false;
+                    above.Visible = false;
+                    below.Visible = false;
+                    TopRight.Visible = false;
+                    right.Visible = false;
+                    BottomRight.Visible = false;
+                    BombCheckAndfloodfill(left);
+                    BombCheckAndfloodfill(TopLeft);
+                    BombCheckAndfloodfill(BottomLeft);
+                    BombCheckAndfloodfill(above);
+                    BombCheckAndfloodfill(below);
+                    BombCheckAndfloodfill(TopRight);
+                    BombCheckAndfloodfill(right);
+                    BombCheckAndfloodfill(BottomRight);
+                }
+            }
+        }
         private void Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Get the button object.
@@ -181,148 +337,12 @@ namespace Minesweeper
                 // Add the button to the form.
                 Controls.Add(button);
             }
-            List<Button> buttons = tiles.Keys.ToList();
-            /*
-                If a condition is true below and a surrounding tile is a mine,
-                this list gets added to, when all tiles surrounding have been 
-                calculated the list is counted for the surrounding bombs and 
-                this will determine the number on the tile.
-            */
-            List<Tile> MinesAround = new List<Tile>();
-
-            // Get the button object.
-            //Button button = (Button)sender;
-            //Tile tile = tiles[button];
-            int index = buttons.IndexOf(button);
-
-            // IMPORTANT mine surrounding logic
-            // Here is logic for button anomalies below, these are positions that
-            // must be treated differently becasuse they are on the edges of the grid
-            // IMPORTANT difficulty scaling logic
-            // In order for it to be compatible with different grid sizes, 
-            // values will be multiplied by the neccessary value to reach the new grid size
-            // eg: Easy is a 10 x 10 grid so 100, in medium it is 15 x 15 so 225 therefore all values must be times by 2.25 and rounded
-            // Corners
-            var Corners = new List<Button>();
-            Button TopLeftCorner = buttons[0];
-            Button TopRightCorner = buttons[10];
-            Button BottomLeftCorner = buttons[90];
-            Button BottomRightCorner = buttons[100];
-            Corners.Add(TopLeftCorner);
-            Corners.Add(TopRightCorner);
-            Corners.Add(BottomLeftCorner);
-            Corners.Add(BottomRightCorner);
-
-            // Top row
-            var TopRow = new List<Button>();
-            Button TopRowOne = buttons[1];
-            Button TopRowTwo = buttons[2];
-            Button TopRowThree = buttons[3];
-            Button TopRowFour = buttons[4];
-            Button TopRowFive = buttons[5];
-            Button TopRowSix = buttons[6];
-            Button TopRowSeven = buttons[7];
-            Button TopRowEight = buttons[8];
-            Button TopRowNine = buttons[9];
-            TopRow.Add(TopRowOne);
-            TopRow.Add(TopRowTwo);
-            TopRow.Add(TopRowThree);
-            TopRow.Add(TopRowFour);
-            TopRow.Add(TopRowFive);
-            TopRow.Add(TopRowSix);
-            TopRow.Add(TopRowSeven);
-            TopRow.Add(TopRowEight);
-            TopRow.Add(TopRowNine);
-            // Bottom row
-            var BottomRow = new List<Button>();
-            Button BottomRowOne = buttons[91];
-            Button BottomRowTwo = buttons[92];
-            Button BottomRowThree = buttons[93];
-            Button BottomRowFour = buttons[94];
-            Button BottomRowFive = buttons[95];
-            Button BottomRowSix = buttons[96];
-            Button BottomRowSeven = buttons[97];
-            Button BottomRowEight = buttons[98];
-            Button BottomRowNine = buttons[99];
-            BottomRow.Add(BottomRowOne);
-            BottomRow.Add(BottomRowTwo);
-            BottomRow.Add(BottomRowThree);
-            BottomRow.Add(BottomRowFour);
-            BottomRow.Add(BottomRowFive);
-            BottomRow.Add(BottomRowSix);
-            BottomRow.Add(BottomRowSeven);
-            BottomRow.Add(BottomRowEight);
-            BottomRow.Add(BottomRowNine);
-            // Left column
-            var LeftColumn = new List<Button>();
-            Button LeftColOne = buttons[11];
-            Button LeftColTwo = buttons[21];
-            Button LeftColThree = buttons[31];
-            Button LeftColFour = buttons[41];
-            Button LeftColFive = buttons[51];
-            Button LeftColSix = buttons[61];
-            Button LeftColSeven = buttons[71];
-            Button LeftColEight = buttons[81];
-            LeftColumn.Add(LeftColOne);
-            LeftColumn.Add(LeftColTwo);
-            LeftColumn.Add(LeftColThree);
-            LeftColumn.Add(LeftColFour);
-            LeftColumn.Add(LeftColFive);
-            LeftColumn.Add(LeftColSix);
-            LeftColumn.Add(LeftColSix);
-            LeftColumn.Add(LeftColSeven);
-            LeftColumn.Add(LeftColEight);
-            // Right column
-            var RightColumn = new List<Button>();
-            Button RightColOne = buttons[20];
-            Button RightColTwo = buttons[30];
-            Button RightColThree = buttons[40];
-            Button RightColFour = buttons[50];
-            Button RightColFive = buttons[60];
-            Button RightColSix = buttons[70];
-            Button RightColSeven = buttons[80];
-            Button RightColEight = buttons[90];
-            RightColumn.Add(RightColOne);
-            RightColumn.Add(RightColTwo);
-            RightColumn.Add(RightColThree);
-            RightColumn.Add(RightColFour);
-            RightColumn.Add(RightColFive);
-            RightColumn.Add(RightColSix);
-            RightColumn.Add(RightColSeven);
-            RightColumn.Add(RightColEight);
-            // Tiles in relation to buttons
-            Button TopLeft = buttons[index - 11];
-            Button BottomLeft = buttons[index + 9];
-            Button left = buttons[index - 1];
-            Button above = buttons[index - 10];
-            Button below = buttons[index + 10];
-            Button right = buttons[index + 1];
-            Button TopRight = buttons[index - 9];
-            Button BottomRight = buttons[index + 11];
-
-            // Adjacent tiles
-            Tile leftTile = tiles[left];
-            Tile TopLeftTile = tiles[TopLeft];
-            Tile BottomLeftTile = tiles[BottomLeft];
-            Tile aboveTile = tiles[above];
-            Tile belowTile = tiles[below];
-            Tile TopRightTile = tiles[TopRight];
-            Tile rightTile = tiles[right];
-            Tile BottomRightTile = tiles[BottomRight];
-
-            // Checks for mines and then adding if one is found
-            if (leftTile.isMine == true) MinesAround.Add(leftTile);
-            if (TopLeftTile.isMine == true) MinesAround.Add(TopLeftTile);
-            if (BottomLeftTile.isMine == true) MinesAround.Add(BottomLeftTile);
-            if (aboveTile.isMine == true) MinesAround.Add(aboveTile);
-            if (belowTile.isMine == true) MinesAround.Add(belowTile);
-            if (TopRightTile.isMine == true) MinesAround.Add(TopRightTile);
-            if (rightTile.isMine == true) MinesAround.Add(rightTile);
-            if (BottomRightTile.isMine == true) MinesAround.Add(BottomRightTile);
 
             // If we clicked mouse1.
             if (e.Button == MouseButtons.Left)
             {
+                BombCheckAndfloodfill(button);
+
                 // Game loss mechanics
                 if (tile.isMine)
                 {
