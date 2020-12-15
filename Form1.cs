@@ -303,15 +303,21 @@ namespace Minesweeper
             {
                 if (tile.isMine)
                 {
-                    button.Image = null;
-                    button.BackColor = Color.Red;
-
+                    foreach (KeyValuePair<Button, Tile> btn in tiles)
+                    {
+                        if(btn.Value.isMine == true)
+                        {
+                            btn.Key.Image = null;
+                            btn.Key.BackColor = Color.Red;
+                        }
+                        
+                    }
                     SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
                     // Play sound bombs detonated
-                    //bombDetonate.Play();
+                    bombDetonate.Play();
                     // Label Instead of messagebox to stop the system sounds?
                     // Tell the user that they lost.
-                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
 
                     // Reset the play area.
                     DisposeTiles();

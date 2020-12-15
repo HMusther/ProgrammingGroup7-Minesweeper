@@ -53,7 +53,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameOptions.cs" />
-    <Compile Include="Leaderboard.cs" />
+    <Compile Include="Leaderboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Leaderboard.designer.cs">
       <DependentUpon>Leaderboard.cs</DependentUpon>
     </Compile>
