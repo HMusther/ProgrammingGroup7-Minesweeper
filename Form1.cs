@@ -311,9 +311,14 @@ namespace Minesweeper
                             btn.Key.BackColor = Color.Red;
                         }
                     }
-                    SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+                   
                     // Play sound bombs detonated
-                    bombDetonate.Play();
+                    try { 
+                        SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+                        bombDetonate.Play();
+                    }
+                    catch { throw; }
+                   
                     // Label Instead of messagebox to stop the system sounds?
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
