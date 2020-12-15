@@ -64,6 +64,119 @@ namespace Minesweeper
             timer.Start();
         }
 
+        private List<Tile> GetTileGrid(Tile tile)
+        {
+            List<Tile> grid = new List<Tile>();
+
+            foreach (Tile t in tiles.Values)
+            {
+                // Move one tile to the right.
+                int x = t.Position.X - buttonSize.Width;
+
+                // Same Y position, so we don't find all tiles that are on the same X but not Y.
+                int y = t.Position.Y;
+
+                // If the X is one to the right, but the Y is the same.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "right";
+                    grid.Add(t);
+                }
+
+                // Move one tile to the left.
+                x = t.Position.X + buttonSize.Width;
+
+                // If the X is one to the left, but the Y is the same.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "left";
+                    grid.Add(t);
+                }
+
+                x = t.Position.X;
+
+                // Move one tile up.
+                y = t.Position.Y + buttonSize.Height;
+
+                // If the X is the same, but the Y is one up.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "up";
+                    grid.Add(t);
+                }
+
+                // Move one tile down.
+                y = t.Position.Y - buttonSize.Height;
+
+                // If the X is the same, but the Y is one up.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "down";
+                    grid.Add(t);
+                }
+
+                // Move one tile to the left.
+                x = t.Position.X + buttonSize.Width;
+
+                // Move one tile up.
+                y = t.Position.Y + buttonSize.Height;
+
+                // If the X is one to the left, and the Y is one up.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "top left";
+                    grid.Add(t);
+                }
+
+                // Move one tile to the right.
+                x = t.Position.X - buttonSize.Width;
+
+                // If the X is one to the right, and the Y is one up.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "top right";
+                    grid.Add(t);
+                }
+
+                // Move one tile to the left.
+                x = t.Position.X + buttonSize.Width;
+
+                // Move one tile down.
+                y = t.Position.Y - buttonSize.Height;
+
+                // If the X is one to the left, and the Y is one down.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "bot left";
+                    grid.Add(t);
+                }
+
+                // Move one tile to the right.
+                x = t.Position.X - buttonSize.Width;
+
+                // If the X is one to the right, and the Y is one down.
+                if (x == tile.Position.X && y == tile.Position.Y)
+                {
+                    //t.button.Text = "bot right";
+                    grid.Add(t);
+                }
+            }
+
+            return grid;
+        }
+
+        private int GetTileNumber(Tile tile)
+        {
+            var tileGrid = GetTileGrid(tile);
+            int mineCount = 0;
+
+            foreach (Tile t in tileGrid)
+                if (t.isMine)
+                    mineCount++;
+
+            return mineCount;
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             seconds++;
@@ -192,7 +305,7 @@ namespace Minesweeper
 
                     SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
                     // Play sound bombs detonated
-                    bombDetonate.Play();
+                    //bombDetonate.Play();
                     // Label Instead of messagebox to stop the system sounds?
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -208,6 +321,11 @@ namespace Minesweeper
                 else
                 {
                     tile.Click();
+
+                    int mineCount = GetTileNumber(tile);
+
+                    if (mineCount > 0)
+                        tile.button.Text = mineCount.ToString();
 
                     button.BackColor = Color.Green;
                 }
