@@ -261,7 +261,10 @@ namespace Minesweeper
 
             // Reset our tile storage.
             tiles.Clear();
-
+            
+            // Reset the bomb count, so that we continue generating mines.
+            GameOptions.BombCount = 0;
+            
             // TODO: remove the need to do this, have the tiles scale automatically.
             ClientSize = new Size(334, 327);
         }
