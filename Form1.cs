@@ -310,7 +310,6 @@ namespace Minesweeper
                             btn.Key.Image = null;
                             btn.Key.BackColor = Color.Red;
                         }
-                        
                     }
                     SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
                     // Play sound bombs detonated
