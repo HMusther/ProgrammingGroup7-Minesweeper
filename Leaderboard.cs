@@ -34,9 +34,21 @@ namespace Minesweeper
         // Moves each value down the list
         public void InsertItem(int pos, KeyValuePair<string, string> userData)
         {
-            KeyValuePair<string, string> itemBackup;
-            KeyValuePair<string, string> itemBackup2;
+            int n = userTimes.Count - 1;
+  
+            for (int i = n; i > pos; i--)
+            {
+                userTimes[i] = userTimes[i - 1];
+            }
+            userTimes[pos] = userData;
 
+;
+
+
+
+
+
+            /*
             for (int i = pos; i <= userTimes.Count - 1; i++)
             {
                 if (i == pos)
@@ -56,7 +68,7 @@ namespace Minesweeper
 
                 }
             }
-
+            */
             // Commits changes to the text file "Leaderboard.txt";
             WriteToLeaderboardFile();
 
@@ -124,15 +136,28 @@ namespace Minesweeper
 
                 // Returns true if the new score is faster (less than)
                 // the current score in the leaderboard
-                if (existingLeaderboardTime[0] > newUsersTimeInts[0])
+                //if (existingLeaderboardTime[0] == newUsersTimeInts[0])
+                
+                // Checks if minutes are smaller
+                if(newUsersTimeInts[0] < existingLeaderboardTimeInts[0])
                 {
-                    // returns true and the position on where the item should be inserted.
                     return (true, i);
+                }
+                else if(newUsersTimeInts[0] == existingLeaderboardTimeInts[0])
+                {
+                    // Check if the seconds are smaller
+                    if(newUsersTimeInts[1] < existingLeaderboardTimeInts[1])
+                    {
+                        return (true, i);
+                    }
+                }
+                else
+                {
+                    continue;
                 }
             }
             // Score does not qualify to be on the leaderboard
-            return (false, -1);
-
+            return (false,-1);
         }
 
         // this function takes the time format mm:ss (string), and separates them into a list
