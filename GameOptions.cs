@@ -1,5 +1,5 @@
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +33,7 @@ namespace Minesweeper
         public static int BombLimit { get; set; }
 
         public static int nonBombCount { get; set; }
+
         public static int numberOfClicks { get; set; }
         public static string username { get; set; }
 
@@ -48,13 +49,13 @@ namespace Minesweeper
                     _Difficulty = difficulty;
                     Columns = 10;
                     Rows = 10;
-                    BombLimit = 30;
+                    BombLimit = 40;
                     break;
                 case Difficulty.MEDIUM:
                     _Difficulty = difficulty;
                     Columns = 15;
                     Rows = 15;
-                    BombLimit = 40;
+                    BombLimit = 30;
                     break;
                 case Difficulty.HARD:
                     _Difficulty = difficulty;

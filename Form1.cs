@@ -41,7 +41,6 @@ namespace Minesweeper
 
         private int flagCap = 50;
 
-        private SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
 
         public Form1()
         {
@@ -265,10 +264,10 @@ namespace Minesweeper
 
             // Reset our tile storage.
             tiles.Clear();
-            
-            // Reset the bomb count, so that we continue generating mines.
+            GameOptions.nonBombCount = 0;
+            GameOptions.numberOfClicks = 0;
             GameOptions.BombCount = 0;
-            
+
             // TODO: remove the need to do this, have the tiles scale automatically.
             ClientSize = new Size(334, 327);
         }
@@ -307,24 +306,15 @@ namespace Minesweeper
             {
                 if (tile.isMine)
                 {
-                    foreach (KeyValuePair<Button, Tile> btn in tiles)
-                    {
-                        if (btn.Value.isMine == true)
-                        {
-                            btn.Key.Image = null;
-                            btn.Key.BackColor = Color.Red;
-                        }
-                    }
-                    // Try play sound bombs detonated
-                    try
-                    {
+                    button.Image = null;
+                    button.BackColor = Color.Red;
 
-                        bombDetonate.Play();
-                    }
-                    catch { throw; }
-
+                    SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+                    // Play sound bombs detonated
+                    //bombDetonate.Play();
+                    // Label Instead of messagebox to stop the system sounds?
                     // Tell the user that they lost.
-                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
+                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Reset the play area.
                     DisposeTiles();
@@ -362,10 +352,10 @@ namespace Minesweeper
                         {
                             leaderboard.InsertItem(qualify.Item2, userInformation);
                         }
+
                     }
                 }
             }
-
             else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked)
             {
                 tile.HasBeenFlagged = !tile.HasBeenFlagged;
@@ -384,6 +374,11 @@ namespace Minesweeper
                 // If your remaining flags is less than 10, then add a 0 as the first digit to format it like this: 01, 02, 03 etc...
                 LabelFlags.Text = $"Flags: {(flagCap - flags < 10 ? "0" : "")}{flagCap - flags}";
             }
+        }
+
+        private void LabelTimer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

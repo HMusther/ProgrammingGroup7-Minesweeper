@@ -53,8 +53,7 @@ namespace Minesweeper
 
             GameOptions.username = usernameInput.Text;
 
-            //Hide menu
-            Hide();
+            // To Do: Pass in the gameOptions object and use it in the main game application
             new Form1().ShowDialog();
         }
 

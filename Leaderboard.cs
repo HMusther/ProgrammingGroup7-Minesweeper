@@ -15,7 +15,7 @@ namespace Minesweeper
     {
 
         private string path = "Leaderboard.txt";
-        private List<KeyValuePair<string,string>> userTimes = new List<KeyValuePair<string, string>>();
+        private List<KeyValuePair<string, string>> userTimes = new List<KeyValuePair<string, string>>();
 
 
         public Leaderboard()
@@ -32,20 +32,28 @@ namespace Minesweeper
 
         // Insert the new user time into the userTimes list
         // Moves each value down the list
-        public void InsertItem(int pos, KeyValuePair<string,string> userData)
+        public void InsertItem(int pos, KeyValuePair<string, string> userData)
         {
             KeyValuePair<string, string> itemBackup;
+            KeyValuePair<string, string> itemBackup2;
 
             for (int i = pos; i <= userTimes.Count - 1; i++)
             {
-                if (i == userTimes.Count - 1)
+                if (i == pos)
+                {
+                    itemBackup = userTimes[i];
+                    userTimes[i] = userData;
+
+                }
+                else if (i == userTimes.Count - 1)
                 {
                     userTimes[i] = userData;
                 }
                 else
                 {
-                    itemBackup = userTimes[i];
-                    userTimes[i] = userData;
+                    itemBackup2 = userTimes[i];
+                    //userTimes[i] = itemBackup;
+
                 }
             }
 
@@ -58,14 +66,14 @@ namespace Minesweeper
         {
             // Creates a new string containing formatted leaderboard
             string newLeaderboard = "";
-            foreach(KeyValuePair<string,string> userScore in userTimes)
+            foreach (KeyValuePair<string, string> userScore in userTimes)
             {
                 newLeaderboard += $"{userScore.Key}/{userScore.Value}\n";
             }
 
             // Writes changes to the file.
             File.WriteAllText(path, newLeaderboard);
-            
+
 
         }
 
@@ -95,16 +103,16 @@ namespace Minesweeper
                 {
                     string[] parts = line.Split('/');
                     userTimes.Add(new KeyValuePair<string, string>(parts[0], parts[1]));
-                } 
+                }
             }
         }
 
-        public (bool,int) CheckIfQualifies(string newUsersTime)
+        public (bool, int) CheckIfQualifies(string newUsersTime)
         {
             // Loops through the existing leaderboard times and check whether
             // the new time is faster
             //(KeyValuePair<string,string> score in userTimes)
-            for(int i = 0; i<=10; i++)
+            for (int i = 0; i <= 10; i++)
             {
                 KeyValuePair<string, string> score = userTimes[i];
                 // Gets the time of current item
