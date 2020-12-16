@@ -31,6 +31,11 @@ namespace Minesweeper
         public static int Rows { get; private set; }
         public static int BombCount { get; set; }
         public static int BombLimit { get; set; }
+        
+        public static int nonBombCount { get; set; }
+
+        public static int numberOfClicks { get; set; }
+        public static string username { get; set; }
 
         /// <summary>
         /// Set the difficulty of the next game, and write it to a file.

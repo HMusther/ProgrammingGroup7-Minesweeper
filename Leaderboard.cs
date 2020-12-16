@@ -35,17 +35,25 @@ namespace Minesweeper
         public void InsertItem(int pos, KeyValuePair<string,string> userData)
         {
             KeyValuePair<string, string> itemBackup;
+            KeyValuePair<string, string> itemBackup2;
 
             for (int i = pos; i <= userTimes.Count - 1; i++)
             {
-                if (i == userTimes.Count - 1)
+                if (i == pos)
+                {
+                    itemBackup = userTimes[i];
+                    userTimes[i] = userData;
+
+                }
+                else if (i == userTimes.Count - 1)
                 {
                     userTimes[i] = userData;
                 }
                 else
                 {
-                    itemBackup = userTimes[i];
-                    userTimes[i] = userData;
+                    itemBackup2 = userTimes[i];
+                    //userTimes[i] = itemBackup;
+                    
                 }
             }
 

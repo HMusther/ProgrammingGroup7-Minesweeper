@@ -51,6 +51,8 @@ namespace Minesweeper
             else if (radioMedium.Checked) GameOptions.SetDifficulty(GameOptions.Difficulty.MEDIUM);
             else if (radioHard.Checked) GameOptions.SetDifficulty(GameOptions.Difficulty.HARD);
 
+            GameOptions.username = usernameInput.Text;
+
             // To Do: Pass in the gameOptions object and use it in the main game application
             new Form1().ShowDialog();
         }

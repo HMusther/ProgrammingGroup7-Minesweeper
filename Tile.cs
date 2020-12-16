@@ -28,12 +28,24 @@ namespace Minesweeper
             */
                 isMine = new Random((int)DateTime.Now.Ticks).Next(0, 3) == 1;
                 // When mine has been successfully created, increment the amount of bombs in grid
-                if (isMine) GameOptions.BombCount++;
+                if (isMine)
+                {
+                    GameOptions.BombCount++;
+                }
+                else
+                {
+                    GameOptions.nonBombCount++;
+                }
             }
         }
 
         public void Click()
         {
+            if (!HasBeenClicked)
+            {
+                GameOptions.numberOfClicks++;
+            }
+
             HasBeenClicked = true;
         }
 

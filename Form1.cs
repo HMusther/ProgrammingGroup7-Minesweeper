@@ -41,6 +41,7 @@ namespace Minesweeper
 
         private int flagCap = 50;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -188,7 +189,9 @@ namespace Minesweeper
             }
 
             // If seconds < 10 then format it like this: 01, 02, 03 etc...
-            LabelTimer.Text = $"Time: {minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
+            LabelTimer.Text = $"{minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
+            LabelClicks.Text = $"{GameOptions.numberOfClicks}";
+            LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
         }
 
         private void SetupTiles()
@@ -228,9 +231,9 @@ namespace Minesweeper
                 tiles.Add(button, tile);
 
 #if DEBUG       
-                /* If in debug mode then show all mines.
+                /* If in debug mode then show all mines.*/
                 if (tile.isMine)
-                    button.BackColor = Color.Red;*/
+                    button.BackColor = Color.Red;
 #endif
                 // Move the next button by the size of the buttons.
                 previousPosition.X += buttonSize.Width;
@@ -261,6 +264,9 @@ namespace Minesweeper
 
             // Reset our tile storage.
             tiles.Clear();
+            GameOptions.nonBombCount = 0;
+            GameOptions.numberOfClicks = 0;
+            GameOptions.BombCount = 0;
 
             // TODO: remove the need to do this, have the tiles scale automatically.
             ClientSize = new Size(334, 327);
@@ -328,6 +334,26 @@ namespace Minesweeper
                         tile.button.Text = mineCount.ToString();
 
                     button.BackColor = Color.Green;
+
+                    if (GameOptions.numberOfClicks == GameOptions.nonBombCount)
+                    {
+                        Leaderboard leaderboard = new Leaderboard();
+                        leaderboard.GetLeaderboard();
+
+                        string time = LabelTimer.Text;
+
+                        MessageBox.Show("You Won!", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        (bool, int) qualify = leaderboard.CheckIfQualifies(time);
+
+                        KeyValuePair<string, string> userInformation = new KeyValuePair<string,string>(GameOptions.username,time);
+
+                        if (qualify.Item1)
+                        {
+                            leaderboard.InsertItem(qualify.Item2, userInformation);
+                        }
+                        
+                    }
                 }
             }
             else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked)
@@ -348,6 +374,11 @@ namespace Minesweeper
                 // If your remaining flags is less than 10, then add a 0 as the first digit to format it like this: 01, 02, 03 etc...
                 LabelFlags.Text = $"Flags: {(flagCap - flags < 10 ? "0" : "")}{flagCap - flags}";
             }
+        }
+
+        private void LabelTimer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
