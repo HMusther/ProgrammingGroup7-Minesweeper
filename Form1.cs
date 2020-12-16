@@ -190,7 +190,9 @@ namespace Minesweeper
             }
 
             // If seconds < 10 then format it like this: 01, 02, 03 etc...
-            LabelTimer.Text = $"Time: {minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
+            LabelTimer.Text = $"{minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
+            LabelClicks.Text = $"{GameOptions.numberOfClicks}";
+            LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
         }
 
         private void SetupTiles()
@@ -230,9 +232,9 @@ namespace Minesweeper
                 tiles.Add(button, tile);
 
 #if DEBUG       
-                /* If in debug mode then show all mines.
+                /* If in debug mode then show all mines.*/
                 if (tile.isMine)
-                    button.BackColor = Color.Red;*/
+                    button.BackColor = Color.Red;
 #endif
                 // Move the next button by the size of the buttons.
                 previousPosition.X += buttonSize.Width;
@@ -307,19 +309,20 @@ namespace Minesweeper
                 {
                     foreach (KeyValuePair<Button, Tile> btn in tiles)
                     {
-                        if(btn.Value.isMine == true)
+                        if (btn.Value.isMine == true)
                         {
                             btn.Key.Image = null;
                             btn.Key.BackColor = Color.Red;
                         }
                     }
                     // Try play sound bombs detonated
-                    try { 
-                        
+                    try
+                    {
+
                         bombDetonate.Play();
                     }
                     catch { throw; }
-                   
+
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
 
@@ -341,8 +344,28 @@ namespace Minesweeper
                         tile.button.Text = mineCount.ToString();
 
                     button.BackColor = Color.Green;
+
+                    if (GameOptions.numberOfClicks == GameOptions.nonBombCount)
+                    {
+                        Leaderboard leaderboard = new Leaderboard();
+                        leaderboard.GetLeaderboard();
+
+                        string time = LabelTimer.Text;
+
+                        MessageBox.Show("You Won!", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        (bool, int) qualify = leaderboard.CheckIfQualifies(time);
+
+                        KeyValuePair<string, string> userInformation = new KeyValuePair<string, string>(GameOptions.username, time);
+
+                        if (qualify.Item1)
+                        {
+                            leaderboard.InsertItem(qualify.Item2, userInformation);
+                        }
+                    }
                 }
             }
+
             else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked)
             {
                 tile.HasBeenFlagged = !tile.HasBeenFlagged;

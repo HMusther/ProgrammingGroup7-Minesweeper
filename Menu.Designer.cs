@@ -156,7 +156,6 @@ namespace Minesweeper
             this.usernameInput.Name = "usernameInput";
             this.usernameInput.Size = new System.Drawing.Size(147, 22);
             this.usernameInput.TabIndex = 9;
-            this.usernameInput.Text = "Type your username";
             // 
             // Menu
             // 

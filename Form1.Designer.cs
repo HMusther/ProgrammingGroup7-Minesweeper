@@ -30,34 +30,59 @@ namespace Minesweeper
         {
             this.LabelTimer = new System.Windows.Forms.Label();
             this.LabelFlags = new System.Windows.Forms.Label();
+            this.LabelClicks = new System.Windows.Forms.Label();
+            this.LabelNonBombs = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelTimer
             // 
             this.LabelTimer.AutoSize = true;
-            this.LabelTimer.Location = new System.Drawing.Point(5, 0);
+            this.LabelTimer.Location = new System.Drawing.Point(7, 0);
+            this.LabelTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelTimer.Name = "LabelTimer";
-            this.LabelTimer.Size = new System.Drawing.Size(60, 13);
+            this.LabelTimer.Size = new System.Drawing.Size(80, 17);
             this.LabelTimer.TabIndex = 0;
             this.LabelTimer.Text = "Timer: 0:00";
             // 
             // LabelFlags
             // 
             this.LabelFlags.AutoSize = true;
-            this.LabelFlags.Location = new System.Drawing.Point(71, 0);
+            this.LabelFlags.Location = new System.Drawing.Point(95, 0);
+            this.LabelFlags.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelFlags.Name = "LabelFlags";
-            this.LabelFlags.Size = new System.Drawing.Size(44, 13);
+            this.LabelFlags.Size = new System.Drawing.Size(58, 17);
             this.LabelFlags.TabIndex = 1;
             this.LabelFlags.Text = "Flags: 0";
             // 
+            // LabelClicks
+            // 
+            this.LabelClicks.AutoSize = true;
+            this.LabelClicks.Location = new System.Drawing.Point(181, 0);
+            this.LabelClicks.Name = "LabelClicks";
+            this.LabelClicks.Size = new System.Drawing.Size(16, 17);
+            this.LabelClicks.TabIndex = 2;
+            this.LabelClicks.Text = "0";
+            // 
+            // LabelNonBombs
+            // 
+            this.LabelNonBombs.AutoSize = true;
+            this.LabelNonBombs.Location = new System.Drawing.Point(223, 0);
+            this.LabelNonBombs.Name = "LabelNonBombs";
+            this.LabelNonBombs.Size = new System.Drawing.Size(16, 17);
+            this.LabelNonBombs.TabIndex = 3;
+            this.LabelNonBombs.Text = "0";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 327);
+            this.ClientSize = new System.Drawing.Size(445, 402);
+            this.Controls.Add(this.LabelNonBombs);
+            this.Controls.Add(this.LabelClicks);
             this.Controls.Add(this.LabelFlags);
             this.Controls.Add(this.LabelTimer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -72,6 +97,8 @@ namespace Minesweeper
 
         private System.Windows.Forms.Label LabelTimer;
         private System.Windows.Forms.Label LabelFlags;
+        private System.Windows.Forms.Label LabelClicks;
+        private System.Windows.Forms.Label LabelNonBombs;
     }
 }
 
