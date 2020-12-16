@@ -76,7 +76,7 @@ namespace Minesweeper
             // LabelNonBombs
             // 
             this.LabelNonBombs.AutoSize = true;
-            this.LabelNonBombs.Location = new System.Drawing.Point(229, 5);
+            this.LabelNonBombs.Location = new System.Drawing.Point(229, 0);
             this.LabelNonBombs.Name = "LabelNonBombs";
             this.LabelNonBombs.Size = new System.Drawing.Size(0, 17);
             this.LabelNonBombs.TabIndex = 4;
@@ -92,7 +92,7 @@ namespace Minesweeper
             this.Controls.Add(this.LabelFlags);
             this.Controls.Add(this.LabelTimer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;

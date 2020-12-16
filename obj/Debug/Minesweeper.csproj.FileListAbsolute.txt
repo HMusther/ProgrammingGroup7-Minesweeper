@@ -21,3 +21,15 @@ C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper\obj\Debug\Mineswee
 C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
 C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper\obj\Debug\Minesweeper.exe
 C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\bin\Debug\Minesweeper.exe.config
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\bin\Debug\Minesweeper.exe
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\bin\Debug\Minesweeper.pdb
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.csprojAssemblyReference.cache
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.Form1.resources
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.Leaderboard.resources
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.Menu.resources
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.Properties.Resources.resources
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.csproj.GenerateResource.cache
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.exe
+C:\Users\hmust\Documents\GitHub\ProgrammingGroup7-Minesweeper - Copy\obj\Debug\Minesweeper.pdb
