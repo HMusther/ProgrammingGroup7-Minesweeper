@@ -41,7 +41,7 @@ namespace Minesweeper
 
         private int flagCap = 50;
 
-        SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+        private SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
 
         public Form1()
         {
@@ -191,8 +191,8 @@ namespace Minesweeper
 
             // If seconds < 10 then format it like this: 01, 02, 03 etc...
             LabelTimer.Text = $"{minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
-            //LabelClicks.Text = $"{GameOptions.numberOfClicks}";
-            //LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
+            LabelClicks.Text = $"{GameOptions.numberOfClicks}";
+            LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
         }
 
         private void SetupTiles()

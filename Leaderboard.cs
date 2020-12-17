@@ -84,7 +84,7 @@ namespace Minesweeper
             }
 
             // Writes changes to the file.
-            File.WriteAllText(path, newLeaderboard);
+            File.WriteAllText(path, newLeaderboard.Trim());
 
 
         }

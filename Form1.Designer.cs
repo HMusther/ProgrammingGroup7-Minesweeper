@@ -86,6 +86,7 @@ namespace Minesweeper
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Minesweeper";
