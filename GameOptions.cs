@@ -59,8 +59,8 @@ namespace Minesweeper
                     break;
                 case Difficulty.HARD:
                     _Difficulty = difficulty;
-                    Columns = 20;
-                    Rows = 20;
+                    Columns = 18;
+                    Rows = 18;
                     BombLimit = 50;
                     break;
                 // Unrecognised difficulty, default to easy mode.

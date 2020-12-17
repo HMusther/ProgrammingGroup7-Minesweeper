@@ -41,6 +41,7 @@ namespace Minesweeper
 
         private int flagCap = 50;
 
+        SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
 
         public Form1()
         {
@@ -190,8 +191,8 @@ namespace Minesweeper
 
             // If seconds < 10 then format it like this: 01, 02, 03 etc...
             LabelTimer.Text = $"{minutes}:{(seconds < 10 ? "0" : "")}{seconds}";
-            LabelClicks.Text = $"{GameOptions.numberOfClicks}";
-            LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
+            //LabelClicks.Text = $"{GameOptions.numberOfClicks}";
+            //LabelNonBombs.Text = $"{GameOptions.nonBombCount}";
         }
 
         private void SetupTiles()
@@ -239,7 +240,7 @@ namespace Minesweeper
                 previousPosition.X += buttonSize.Width;
 
                 // If the next button.X position goes out of bounds then make a new line.
-                if (previousPosition.X > ClientSize.Width + buttonSize.Width)
+                if (previousPosition.X > GameOptions.Columns * (buttonSize.Width - 1))
                 {
                     // New line.
                     previousPosition.Y += buttonSize.Height;
@@ -253,7 +254,18 @@ namespace Minesweeper
             }
 
             // TODO: automatically scale this, or have fixed values change depending on the difficulty.
-            ClientSize = new Size(400, 398 + 15);
+            if(GameOptions._Difficulty == GameOptions.Difficulty.EASY)
+            {
+                ClientSize = new Size(400, 398 + 15);
+            }
+            else if(GameOptions._Difficulty == GameOptions.Difficulty.MEDIUM)
+            {
+                ClientSize = new Size(600, 600 + 15);
+            }
+            else if (GameOptions._Difficulty == GameOptions.Difficulty.HARD)
+            {
+                ClientSize = new Size(720, 720 + 15);
+            }
         }
 
         private void DisposeTiles()
@@ -268,8 +280,19 @@ namespace Minesweeper
             GameOptions.numberOfClicks = 0;
             GameOptions.BombCount = 0;
 
-            // TODO: remove the need to do this, have the tiles scale automatically.
-            ClientSize = new Size(334, 327);
+            // TODO: automatically scale this, or have fixed values change depending on the difficulty.
+            if (GameOptions._Difficulty == GameOptions.Difficulty.EASY)
+            {
+                ClientSize = new Size(400, 398 + 15);
+            }
+            else if (GameOptions._Difficulty == GameOptions.Difficulty.MEDIUM)
+            {
+                ClientSize = new Size(600, 600 + 15);
+            }
+            else if (GameOptions._Difficulty == GameOptions.Difficulty.HARD)
+            {
+                ClientSize = new Size(720, 720 + 15);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -309,12 +332,12 @@ namespace Minesweeper
                     button.Image = null;
                     button.BackColor = Color.Red;
 
-                    SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
-                    // Play sound bombs detonated
-                    //bombDetonate.Play();
-                    // Label Instead of messagebox to stop the system sounds?
+
+                    // Try play sound bombs detonated avoid error
+                    try { bombDetonate.Play(); }
+                    catch { throw; }
                     // Tell the user that they lost.
-                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
 
                     // Reset the play area.
                     DisposeTiles();
@@ -378,7 +401,11 @@ namespace Minesweeper
 
         private void LabelTimer_Click(object sender, EventArgs e)
         {
+        }
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DisposeTiles();
         }
     }
 }
