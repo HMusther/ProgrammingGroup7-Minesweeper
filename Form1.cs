@@ -369,6 +369,8 @@ namespace Minesweeper
 
                         string time = LabelTimer.Text;
 
+                        hasWon = true;
+
                         MessageBox.Show("You Won!", "Minesweeper", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         (bool, int) qualify = leaderboard.CheckIfQualifies(time);
@@ -377,8 +379,6 @@ namespace Minesweeper
 
                         if (qualify.Item1)
                             leaderboard.InsertItem(qualify.Item2, userInformation);
-
-                        hasWon = true;
                     }
                 }
             }
