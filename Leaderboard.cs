@@ -37,16 +37,9 @@ namespace Minesweeper
             int n = userTimes.Count - 1;
   
             for (int i = n; i > pos; i--)
-            {
                 userTimes[i] = userTimes[i - 1];
-            }
+            
             userTimes[pos] = userData;
-
-;
-
-
-
-
 
             /*
             for (int i = pos; i <= userTimes.Count - 1; i++)
@@ -126,34 +119,33 @@ namespace Minesweeper
             //(KeyValuePair<string,string> score in userTimes)
             for (int i = 0; i <= 10; i++)
             {
-                KeyValuePair<string, string> score = userTimes[i];
-                // Gets the time of current item
-                string existingLeaderboardTime = score.Value;
-
-                // Converts MM:SS string format to separate ints
-                List<int> existingLeaderboardTimeInts = StringTimeToInts(existingLeaderboardTime);
-                List<int> newUsersTimeInts = StringTimeToInts(newUsersTime);
-
-                // Returns true if the new score is faster (less than)
-                // the current score in the leaderboard
-                //if (existingLeaderboardTime[0] == newUsersTimeInts[0])
-                
-                // Checks if minutes are smaller
-                if(newUsersTimeInts[0] < existingLeaderboardTimeInts[0])
+                if (userTimes.Count >= i)
                 {
-                    return (true, i);
-                }
-                else if(newUsersTimeInts[0] == existingLeaderboardTimeInts[0])
-                {
-                    // Check if the seconds are smaller
-                    if(newUsersTimeInts[1] < existingLeaderboardTimeInts[1])
-                    {
+                    KeyValuePair<string, string> score = userTimes[i];
+
+                    // Gets the time of current item
+                    string existingLeaderboardTime = score.Value;
+
+                    // Converts MM:SS string format to separate ints
+                    List<int> existingLeaderboardTimeInts = StringTimeToInts(existingLeaderboardTime);
+                    List<int> newUsersTimeInts = StringTimeToInts(newUsersTime);
+
+                    // Returns true if the new score is faster (less than)
+                    // the current score in the leaderboard
+                    //if (existingLeaderboardTime[0] == newUsersTimeInts[0])
+
+                    // Checks if minutes are smaller
+                    if (newUsersTimeInts[0] < existingLeaderboardTimeInts[0])
                         return (true, i);
+                    
+                    else if (newUsersTimeInts[0] == existingLeaderboardTimeInts[0])
+                    {
+                        // Check if the seconds are smaller
+                        if (newUsersTimeInts[1] < existingLeaderboardTimeInts[1])
+                            return (true, i);
                     }
-                }
-                else
-                {
-                    continue;
+                    else
+                        continue;
                 }
             }
             // Score does not qualify to be on the leaderboard
