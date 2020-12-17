@@ -379,7 +379,7 @@ namespace Minesweeper
                     }
                 }
             }
-            else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked)
+            else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked && flags < 50)
             {
                 tile.HasBeenFlagged = !tile.HasBeenFlagged;
 
