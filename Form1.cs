@@ -322,9 +322,14 @@ namespace Minesweeper
             {
                 if (tile.isMine)
                 {
-                    button.Image = null;
-                    button.BackColor = Color.Red;
-
+                    foreach (KeyValuePair<Button, Tile> btn in tiles)
+                    {
+                        if (btn.Value.isMine)
+                        {
+                            btn.Key.Image = null;
+                            btn.Key.BackColor = Color.Red;
+                        }
+                    }
                     bombDetonate.Play();
                     
                     // Tell the user that they lost.
