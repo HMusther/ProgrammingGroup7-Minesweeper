@@ -41,7 +41,7 @@ namespace Minesweeper
 
         private int flagCap = 50;
 
-        private SoundPlayer bombDetonate = new SoundPlayer("bombDetonate.wav");
+        private readonly SoundPlayer bombDetonate;
 
         public Form1()
         {
@@ -50,15 +50,15 @@ namespace Minesweeper
             // Make the Form appear in the middle of your screen.
             StartPosition = FormStartPosition.CenterScreen;
 
-            // TODO: embed the image so you don't need to search for it.
-            // Search for the flag image.
-            string path = Environment.CurrentDirectory + @"\flag_filled_40px.png";
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream myStream = myAssembly.GetManifestResourceStream("Minesweeper.flag_filled_40px.png");
+            flagImage = Image.FromStream(myStream);
 
-            if (File.Exists(path))
-                flagImage = Image.FromFile(path);
+            myStream = myAssembly.GetManifestResourceStream("Minesweeper.bombDetonate.wav");
+            bombDetonate = new SoundPlayer(myStream);
 
-            // If flagImage is null and we're in debug mode, then throw an exception.
-            Debug.Assert(flagImage != null, $"'flagImage' is null. Path: {path}");
+            Debug.Assert(flagImage != null, "'flagImage' is null.");
+            Debug.Assert(bombDetonate != null, "'bombDetonate is null.'");
 
             timer = new Timer();
             timer.Interval = 1000;
@@ -253,18 +253,22 @@ namespace Minesweeper
                 Controls.Add(button);
             }
 
-            // TODO: automatically scale this, or have fixed values change depending on the difficulty.
-            if(GameOptions._Difficulty == GameOptions.Difficulty.EASY)
+            ScaleWindow();
+        }
+
+        private void ScaleWindow()
+        {
+            switch (GameOptions._Difficulty)
             {
-                ClientSize = new Size(400, 398 + 15);
-            }
-            else if(GameOptions._Difficulty == GameOptions.Difficulty.MEDIUM)
-            {
-                ClientSize = new Size(600, 600 + 15);
-            }
-            else if (GameOptions._Difficulty == GameOptions.Difficulty.HARD)
-            {
-                ClientSize = new Size(720, 720 + 15);
+                case GameOptions.Difficulty.EASY:
+                    ClientSize = new Size(400, 398 + 15);
+                    break;
+                case GameOptions.Difficulty.MEDIUM:
+                    ClientSize = new Size(600, 600 + 15);
+                    break;
+                case GameOptions.Difficulty.HARD:
+                    ClientSize = new Size(720, 720 + 15);
+                    break;
             }
         }
 
@@ -280,19 +284,7 @@ namespace Minesweeper
             GameOptions.numberOfClicks = 0;
             GameOptions.BombCount = 0;
 
-            // TODO: automatically scale this, or have fixed values change depending on the difficulty.
-            if (GameOptions._Difficulty == GameOptions.Difficulty.EASY)
-            {
-                ClientSize = new Size(400, 398 + 15);
-            }
-            else if (GameOptions._Difficulty == GameOptions.Difficulty.MEDIUM)
-            {
-                ClientSize = new Size(600, 600 + 15);
-            }
-            else if (GameOptions._Difficulty == GameOptions.Difficulty.HARD)
-            {
-                ClientSize = new Size(720, 720 + 15);
-            }
+            ScaleWindow();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -332,10 +324,8 @@ namespace Minesweeper
                     button.Image = null;
                     button.BackColor = Color.Red;
 
-
-                    // Try play sound bombs detonated avoid error
-                    try { bombDetonate.Play(); }
-                    catch { throw; }
+                    bombDetonate.Play();
+                    
                     // Tell the user that they lost.
                     MessageBox.Show("You lost.", "Minesweeper", MessageBoxButtons.OK);
 
@@ -372,9 +362,7 @@ namespace Minesweeper
                         KeyValuePair<string, string> userInformation = new KeyValuePair<string, string>(GameOptions.username, time);
 
                         if (qualify.Item1)
-                        {
                             leaderboard.InsertItem(qualify.Item2, userInformation);
-                        }
 
                         Close();
                     }
