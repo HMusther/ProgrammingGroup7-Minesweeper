@@ -43,6 +43,8 @@ namespace Minesweeper
         private int flagCap = 50;
 
         private readonly SoundPlayer bombDetonate;
+        
+        private bool hasWon = false;
 
         public Form1()
         {
@@ -182,6 +184,9 @@ namespace Minesweeper
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            if (hasWon)
+                return;
+        
             seconds++;
 
             if (seconds == 60)
@@ -298,6 +303,9 @@ namespace Minesweeper
 
         private void Button_MouseDown(object sender, MouseEventArgs e)
         {
+            if (hasWon)
+                return;
+        
             // Get the button object.
             Button button = (Button)sender;
 
@@ -370,7 +378,7 @@ namespace Minesweeper
                         if (qualify.Item1)
                             leaderboard.InsertItem(qualify.Item2, userInformation);
 
-                        Close();
+                        hasWon = true;
                     }
                 }
             }
