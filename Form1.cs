@@ -376,10 +376,11 @@ namespace Minesweeper
                             leaderboard.InsertItem(qualify.Item2, userInformation);
                         }
 
+                        Close();
                     }
                 }
             }
-            else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked && flags < 50)
+            else if (e.Button == MouseButtons.Right && !tile.HasBeenClicked && flags < flagCap)
             {
                 tile.HasBeenFlagged = !tile.HasBeenFlagged;
 
