@@ -237,11 +237,6 @@ namespace Minesweeper
                 var tile = new Tile(button);
                 tiles.Add(button, tile);
 
-#if DEBUG       
-                /* If in debug mode then show all mines.*/
-                if (tile.isMine)
-                    button.BackColor = Color.Red;
-#endif
                 // Move the next button by the size of the buttons.
                 previousPosition.X += buttonSize.Width;
 

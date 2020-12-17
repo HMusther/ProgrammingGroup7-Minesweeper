@@ -119,7 +119,7 @@ namespace Minesweeper
             //(KeyValuePair<string,string> score in userTimes)
             for (int i = 0; i <= 10; i++)
             {
-                if (userTimes.Count >= i)
+                if (userTimes.Count > i)
                 {
                     KeyValuePair<string, string> score = userTimes[i];
 

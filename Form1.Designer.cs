@@ -62,6 +62,7 @@ namespace Minesweeper
             this.LabelClicks.Size = new System.Drawing.Size(16, 17);
             this.LabelClicks.TabIndex = 2;
             this.LabelClicks.Text = "0";
+            this.LabelClicks.Visible = false;
             // 
             // LabelNonBombs
             // 
@@ -71,6 +72,7 @@ namespace Minesweeper
             this.LabelNonBombs.Size = new System.Drawing.Size(16, 17);
             this.LabelNonBombs.TabIndex = 3;
             this.LabelNonBombs.Text = "0";
+            this.LabelNonBombs.Visible = false;
             // 
             // Form1
             // 
